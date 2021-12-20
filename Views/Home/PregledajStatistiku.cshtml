@@ -1,0 +1,95 @@
+﻿@model IEnumerable<StudEvidencija.Models.Statistika>
+@{
+	ViewBag.Title = "PregledajStatistiku";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2>Pregledaj Statistiku</h2>
+@using (Html.BeginForm("PregledajStatistiku", "Home", FormMethod.Get))
+{
+	<form>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					<div class="row">
+						<div class="col-lg-2">
+							@Html.Label("DatumOd", "Od datuma", new { htmlAttributes = new { @class = "form-control" } })
+						</div>
+						<div class="col-lg-3">
+							@Html.Editor("DatumOd", new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+						</div>
+						<div class="col-lg-2">
+							@Html.Label("DatumDo", "Do datuma", new { htmlAttributes = new { @class = "form-control" } })
+						</div>
+						<div class="col-lg-3">
+							@Html.Editor("DatumDo", new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+						</div>
+						<div class="col-lg-2">
+							<button type="submit" class="btn btn-success btn-block">Prikaži</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+}
+
+@if (Model != null)
+{
+
+	<div class="col-md-12">
+		<div class="row h2 bg-primary text-white">
+			<div class="col-lg-1"></div>
+			<div class="col-lg-4">
+				@Html.Label("Razdoblje pregleda:", new { htmlAttributes = new { @class = "form-control" } })
+			</div>
+			<div class="col-lg-3">
+				@Html.Label("", Model.ElementAt(Model.Count() - 1).DatumOd.ToString().Substring(0, 11), new { htmlAttributes = new { @class = "form-control" } })
+			</div>
+			<div class="col-lg-1">
+				@Html.Label("-", new { htmlAttributes = new { @class = "form-control" } })
+			</div>
+			<div class="col-lg-3">
+				@Html.Label("", Model.ElementAt(Model.Count() - 1).DatumDo.ToString().Substring(0, 11), new { htmlAttributes = new { @class = "form-control" } })
+			</div>
+		</div>
+	</div>
+}
+
+<table class="table">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(m => m.Ime)
+		</th>
+		<th>
+			@Html.DisplayNameFor(m => m.Prezime)
+		</th>
+		<th>
+			@Html.DisplayNameFor(m => m.TrajanjeRada)
+		</th>
+	</tr>
+	@if (Model != null)
+	{
+		var last = Model.Last();
+		foreach (var item in Model)
+		{
+			if (!item.Equals(last))
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(m => item.Ime)
+					</td>
+					<td>
+						@Html.DisplayFor(m => item.Prezime)
+					</td>
+					<td>
+						@Html.DisplayFor(m => item.TrajanjeRada)
+					</td>
+				</tr>
+			}
+		}
+	}
+</table>
+
+

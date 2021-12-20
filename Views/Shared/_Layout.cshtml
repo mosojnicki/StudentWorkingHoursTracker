@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+<html lang="hr">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@ViewBag.Title - My ASP.NET Application</title>
+	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+	<div class="navbar navbar-expand-sm bg-primary navbar-dark sticky-top">
+		<div class="container-fluid">
+			<div class="col-4">
+				<ul class="navbar-nav">
+					<li class="nav-items">
+						@Html.ActionLink("ImeFirme", "Index", "Home",  new { @class = "navbar-brand" } )
+					</li>
+				</ul>
+			</div>
+			<div class="col-5 h5">
+				<ul class="navbar-nav justify-content-end">
+					<li>@Html.ActionLink("Dodaj studenta", "DodajStudenta", "Home", new { @class = "nav-items nav-link text-white" }) </li>
+					<li>@Html.ActionLink("Pregled studenata", "PregledStudenata", "Home", new { @class = "nav-items nav-link text-white" })</li>
+					<li>@Html.ActionLink("Evidentiraj rad", "EvidentirajRad", "Home", new { @class = "nav-items nav-link text-white" })</li>
+					<li>@Html.ActionLink("Statistika", "PregledajStatistiku", "Home", new { @class = "nav-items nav-link text-white" })</li>
+				</ul>
+			</div>
+			<div class="col-3">
+				<ul class="navbar-nav justify-content-end">
+					<li class="nav-items">
+						<a href="#" class="navbar-link text-white">Logout</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container body-content">
+		@RenderBody()
+		<hr />
+		<footer>
+			<p>&copy; @DateTime.Now.Year - Izradio: Marin Osojnički </p>
+		</footer>
+	</div>
+
+
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/bootstrap")
+	@RenderSection("scripts", required: false)
+</body>
+</html>

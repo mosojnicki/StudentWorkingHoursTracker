@@ -1,0 +1,60 @@
+﻿@model IEnumerable<StudEvidencija.Models.Student>
+
+@{
+	ViewBag.Title = "PregledStudenata";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.js"></script>
+</head>
+
+
+
+<h2>Pregled Studenata</h2>
+
+<table class="table">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.StudID)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Ime)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Prezime)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Fakultet)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Aktivan)
+		</th>
+		<th></th>
+	</tr>
+
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.StudID)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Ime)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Prezime)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Fakultet)
+			</td>
+			<td>
+				@Html.CheckBoxFor(modelItem => item.Aktivan )
+			</td>
+			<td>
+				@Html.ActionLink("Uredi", "Edit", "Home", new { @id = item.StudID }, "")
+			</td>
+		</tr>
+	}
+</table>

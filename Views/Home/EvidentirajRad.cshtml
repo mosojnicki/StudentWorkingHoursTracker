@@ -1,0 +1,71 @@
+﻿@model StudEvidencija.Models.Student
+@{
+	ViewBag.Title = "EvidentirajRad";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.js"></script>
+</head>
+
+<h2>Evidentiranje rada</h2>
+
+
+@using (Html.BeginForm())
+{
+	<form>
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-4 p-1">
+				<div class="form-group">
+					@Html.TextBox("StudID", "", new { @class = "form-control", @readonly = "readonly" })
+				</div>
+				<div class="form-group">
+					@Html.LabelFor(x => x.ImePrezime)
+					@Html.DropDownList("ddl", Model.ImePrezime, "--Odaberi--", new { @class = "form-control" })
+
+				</div>
+				<div class="form-group">
+					@Html.LabelFor(x => x.rad.Datum)
+					@Html.EditorFor(x => x.rad.Datum, new { htmlAttributes = new { @class = "form-control" } })
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-6">
+							@Html.LabelFor(x => x.rad.VrijemeOd)
+							@Html.EditorFor(x => x.rad.VrijemeOd, new { htmlAttributes = new { @class = "form-control text-right" } })
+						</div>
+						<div class="col-6">
+							@Html.LabelFor(x => x.rad.VrijemeDo)
+							@Html.EditorFor(x => x.rad.VrijemeDo, new { htmlAttributes = new { @class = "form-control text-right" } })
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-6">
+							<button type="reset" class="btn btn-danger btn-block">Obriši</button>
+						</div>
+						<div class="col-6">
+							<button type="submit" class="btn btn-success btn-block">Spremi</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4"></div>
+		</div>
+	</form>
+}
+
+<script>
+	var zz;
+	$(document).on('change', "#ddl", function () {
+		var zz = $("#ddl option:selected").val();
+		$('input[name=StudID]').val(zz);
+	});
+
+</script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
